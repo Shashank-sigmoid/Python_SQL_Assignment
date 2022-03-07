@@ -95,3 +95,12 @@ INSERT INTO jobhist VALUES (7934,'23-JAN-82',NULL,'CLERK',1300,NULL,10,'New Hire
 
 -- To set the enddate same as current date
 update jobhist set enddate = '2022-MAR-08' where enddate is null;
+
+-- To create a new_table with the given columns
+create table new_table (
+	Employee_name varchar(10),
+	Employee_no numeric(4) primary key,
+	Department_name varchar(14),
+	Total_comp numeric(7,2),
+	Months numeric(3)
+);
