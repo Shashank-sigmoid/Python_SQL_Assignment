@@ -98,9 +98,9 @@ update jobhist set enddate = '2022-MAR-08' where enddate is null;
 
 -- To create a new_table with the given columns
 create table new_table (
-	Employee_name varchar(10),
-	Employee_no numeric(4) primary key,
-	Department_name varchar(14),
-	Total_comp numeric(7,2),
-	Months numeric(3)
+	employee_name varchar(10),
+	employee_no numeric(4),
+	department_name varchar(14),
+	total_comp numeric(9),
+	months numeric(3)
 );
