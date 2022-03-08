@@ -3,6 +3,7 @@ import xlsxwriter
 
 
 def question_2():
+    """ Find employee name, employee no., department name, total compensation and months in the organization """
     workbook = None
     cur = None
     conn = None
