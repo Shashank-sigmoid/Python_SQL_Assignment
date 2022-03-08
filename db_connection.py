@@ -1,27 +1,44 @@
 import psycopg2
 
-try:
-    # DB variables
-    db_host = "localhost"
-    db_name = "company"
-    db_user = "postgres"
-    db_pass = "SDstrange"
 
-    # Connecting with the local server database
-    conn = psycopg2.connect(dbname=db_name, user=db_user, password=db_pass, host=db_host)
-    cur = conn.cursor()
+def db_connection():
+    """ Connect to the PostgresSQL database server """
+    cur = None
+    conn = None
+
+    def connect():
+        # DB variables
+        db_host = "localhost"
+        db_name = "company"
+        db_user = "postgres"
+        db_pass = "SDstrange"
+
+        # Connecting with the local server database
+        print("Connecting to the PostgresSQL database...")
+        conn = psycopg2.connect(dbname=db_name, user=db_user, password=db_pass, host=db_host)
+        cur = conn.cursor()
+        return cur, conn
 
     # To check database connectivity
-    cur.execute("select * from dept;")
+    def check(cur):
+        print("PostgresSQL database version:")
+        cur.execute("select version();")
 
-    # Displaying the data fetched
-    results = cur.fetchall()
-    for result in results:
-        print(result)
+        # Displaying the data fetched
+        db_version = cur.fetchone()
+        print(db_version)
 
-except:
-    print("Database is not connected")
+    try:
+        cur, conn = connect()
+        check(cur)
 
-finally:
-    cur.close()
-    conn.close()
+    except:
+        print("Database is not connected")
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+if __name__ == '__main__':
+    db_connection()
